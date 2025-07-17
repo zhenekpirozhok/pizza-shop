@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Calabresa",
+        "price": 9.99,
+        "image": "/images/pizzas/calabresa.png"
+    },
+    {
+        "id": 2,
+        "name": "Classien",
+        "price": 8.99,
+        "image": "/images/pizzas/classien.png"
+    },
+    {
+        "id": 3,
+        "name": "Palmitaen",
+        "price": 10.99,
+        "image": "/images/pizzas/palmitaen.png"
+    },
+    {
+        "id": 4,
+        "name": "Parmezani",
+        "price": 9.99,
+        "image": "/images/pizzas/parmezani.png"
+    },
+    {
+        "id": 5,
+        "name": "Provoloni",
+        "price": 11.99,
+        "image": "/images/pizzas/provoloni.png"
+    },
+    {
+        "id": 6,
+        "name": "Quejoni",
+        "price": 10.99,
+        "image": "/images/pizzas/quejoni.png"
+    }
+]

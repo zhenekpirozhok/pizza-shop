@@ -18,7 +18,7 @@ export default function Header() {
 
     return (
         <>
-        <header className="z-20 flex items-center md:justify-between justify-start md:px-8 px-4 py-4">
+        <header className="fixed top-0 left-0 w-full z-20 flex items-center md:justify-between justify-start md:px-8 px-4 py-4 bg-white">
             <div className="flex items-center gap-4">
             <Link href="/" className="md:flex items-center gap-2 hidden">
                 <Image src="/icons/pizza.svg" alt="logo" width={50} height={50} />

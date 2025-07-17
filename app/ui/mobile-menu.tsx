@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { NavItem } from "@/app/constants/navigation";
+import { NavItem } from "@/app/types/navigation.type";
 
 type Props = {
   navItems: NavItem[];
