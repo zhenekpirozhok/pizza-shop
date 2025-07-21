@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -9,7 +10,7 @@ export default function Home() {
           <h1 className="text-4xl font-bold sm:text-7xl text-white">All the best<br/> things are <span className="text-red-400">round</span></h1>
         </div>
       <p className="text-neutral-200 py-5">Our pizzas are made by slaves... Oh, I really said that? I meant by the best italian chefs, yeah.</p>
-      <button className="bg-red-800 hover:bg-red-900 text-white shadow-md py-4 px-6 rounded-full cursor-pointer text-md uppercase">Order now</button>
+      <button className="bg-red-800 hover:bg-red-900 text-white shadow-md py-4 px-6 rounded-full cursor-pointer text-md uppercase"><Link href="/menu">Order now</Link></button>
       </div>
     </main>
   );
