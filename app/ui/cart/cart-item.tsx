@@ -1,12 +1,11 @@
-import { Pizza } from "@/app/types/pizza.type";
+'use client';
+
+import { useCartStore } from "@/app/store/cart";
+import { CartItem as CartItemType } from "@/app/types/cart-item.type";
 import Image from "next/image";
 
-type Props = {
-  pizza: Pizza;
-  quantity: number;
-};
-
-export const CartItem = ({ pizza, quantity }: Props) => {
+export const CartItem = ({ pizza, quantity }: CartItemType) => {
+  const changeQuantity = useCartStore((state) => state.changeQuantity);
   return (
     <div className="flex items-center justify-between gap-4 p-4 shadow-lg rounded-lg bg-white">
       <div className="flex items-center gap-4">
@@ -21,12 +20,14 @@ export const CartItem = ({ pizza, quantity }: Props) => {
       </div>
       <div className="flex items-center gap-2">
         <button
+          onClick={() => changeQuantity(pizza.id, quantity - 1)}
           className="w-6 h-8 bg-gray-200 rounded hover:bg-gray-300 cursor-pointer"
         >
           -
         </button>
         <span className="text-lg">{quantity}</span>
         <button
+          onClick={() => changeQuantity(pizza.id, quantity + 1)}
           className="w-6 h-8 bg-gray-200 rounded hover:bg-gray-300 cursor-pointer"
         >
           +
