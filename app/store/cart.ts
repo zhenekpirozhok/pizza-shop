@@ -5,6 +5,7 @@ import { Pizza } from "../types/pizza.type";
 type CartState = {
     items: CartItem[];
     totalPrice: number;
+    itemsCount: number;
     addToCart: (pizza: Pizza) => void;
     removeFromCart: (pizzaId: number) => void;
     changeQuantity: (pizzaId: number, newQty: number) => void;
@@ -17,9 +18,12 @@ const calculateTotalPrice = (items: CartItem[]) => {
         0).toFixed(2);
 }
 
+const calculateItemsCount = (items: CartItem[]) => items.reduce((acc, item) => acc + item.quantity, 0);
+
 export const useCartStore = create<CartState>((set) => ({
     items: [],
     totalPrice: 0,
+    itemsCount: 0,
     addToCart: (pizza: Pizza) => {
         set((state) => {
             const existing = state.items.find(item => item.pizza.id === pizza.id);
@@ -37,7 +41,7 @@ export const useCartStore = create<CartState>((set) => ({
 
             const totalPrice = calculateTotalPrice(updatedItems);
 
-            return { items: updatedItems, totalPrice };
+            return { items: updatedItems, totalPrice, itemsCount: calculateItemsCount(updatedItems) };
         });
     },
     removeFromCart: (pizzaId: number) => {
@@ -46,7 +50,8 @@ export const useCartStore = create<CartState>((set) => ({
             const updatedTotal = calculateTotalPrice(updatedItems);
             return ({
                 items: updatedItems,
-                totalPrice: updatedTotal
+                totalPrice: updatedTotal,
+                itemsCount: calculateItemsCount(updatedItems)
             })
         })
     },
@@ -57,9 +62,10 @@ export const useCartStore = create<CartState>((set) => ({
             const updatedTotal = calculateTotalPrice(updatedItems);
             return ({
                 items: updatedItems,
-                totalPrice: updatedTotal
+                totalPrice: updatedTotal,
+                itemsCount: calculateItemsCount(updatedItems)
             })
         });
     },
-    clearCart: () => set({ items: [], totalPrice: 0 }),
+    clearCart: () => set({ items: [], totalPrice: 0, itemsCount: 0 }),
 }))

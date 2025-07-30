@@ -12,7 +12,7 @@ import { useCartStore } from "@/app/store/cart";
 export default function Header() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const itemsCount = useCartStore((state) => state.items.length);
+  const itemsCount = useCartStore((state) => state.itemsCount);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 

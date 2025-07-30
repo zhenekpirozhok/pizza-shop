@@ -6,6 +6,7 @@ import Link from "next/link";
 
 export default function Page() {
     const total = useCartStore((state) => state.totalPrice);
+    const clearCart = useCartStore((state) => state.clearCart);
 
     return <div className="flex flex-col items-stretch min-h-screen py-10 px-15">
         <h1 className="md:text-4xl text-2xl font-bold text-center">Checkout</h1>
@@ -17,6 +18,6 @@ export default function Page() {
             </div>
             <DeliveryForm />
         </div>
-        <button className="bg-red-800 hover:bg-red-900 text-white shadow-md py-4 px-6 rounded-full cursor-pointer text-md uppercase self-center"><Link href="/success">Place order</Link></button>
+        <button onClick={clearCart} className="bg-red-800 hover:bg-red-900 text-white shadow-md py-4 px-6 rounded-full cursor-pointer text-md uppercase self-center"><Link href="/success">Place order</Link></button>
     </div>;
 }
