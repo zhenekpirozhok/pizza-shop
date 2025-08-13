@@ -1,27 +1,8 @@
-import { Pizza } from '../types/pizza.type';
-import { PizzaCard } from '../ui/menu/pizza-card';
-
-async function fetchPizzas() {
-  try {
-    const response = await fetch('http://localhost:3000/api/graphql', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: `{ pizzas { id name price image } }`,
-      }),
-    });
-    const data = await response.json();
-    return data.data.pizzas;
-  } catch (error) {
-    console.error('Error fetching pizzas:', error);
-  }
-}
+import { Suspense } from 'react';
+import MenuSkeleton from '../ui/menu/menu-skeleton';
+import MenuList from '../ui/menu/menu-list';
 
 export default async function Page() {
-  const pizzas = await fetchPizzas();
-
   return (
     <div className="flex flex-col items-center gap-5 py-10 px-5">
       <p className="text-red-700 font-bold md:text-lg text-sm uppercase">
@@ -30,11 +11,9 @@ export default async function Page() {
       <h1 className="md:text-4xl text-2xl font-bold md:w-1/2 w-full text-center">
         A Menu That Will Always Capture Your Heart
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-10">
-        {pizzas.map((pizza: Pizza) => (
-          <PizzaCard key={pizza.id} pizza={pizza} />
-        ))}
-      </div>
+      <Suspense fallback={<MenuSkeleton />}>
+      <MenuList />
+      </Suspense>
     </div>
   );
 }
